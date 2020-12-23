@@ -20,6 +20,51 @@ const appendElem = (elem, cont) => {
   if (cont) cont.appendChild(elem)
 }
 
+const teleportEach = (list, conts) => {
+  const containers = conts.map(cont => document.querySelector(cont));
+
+  const elems = list.forEach((item, itemIndex) => {
+    const $item = document.querySelector(item);
+
+    containers[itemIndex].appendChild($item)
+  })
+}
+
+
+// Init Swiper.js sliders
+
+const swipersInit = () => {
+  const mainSlider = new Swiper('.main-slider', {
+    direction: 'horizontal',
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 10,
+    autoplay: {
+      delay: 12000
+    },
+    mousewheel: {
+      forceToAxis: true,
+    }
+  });
+
+  const productItemsSwiper = new Swiper('.product-items-swiper', {
+    slidesPerView: 'auto',
+    direction: 'horizontal',
+    mousewheel: {
+      forceToAxis: true,
+    }
+  });
+
+  const itemsSwiper = new Swiper('.items-swiper', {
+    slidesPerView: 'auto',
+    direction: 'horizontal',
+    freeMode: true,
+    mousewheel: {
+      forceToAxis: true,
+    }
+  })
+}
+
 
 // Set active class
 

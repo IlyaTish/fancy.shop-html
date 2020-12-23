@@ -1,0 +1,60 @@
+.advantages-list
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr 1fr
+
+  &__item
+    padding: 1.25rem 1.25rem 3rem
+    position: relative
+    background: #FFFFFF
+    border-right: 1px solid #F2F2F2
+
+    &:nth-child(odd)
+      background: #FBFBFB
+
+    &:last-of-type
+      padding: 1.25rem 0 3rem 1.25rem
+      border: none
+
+  &__icon-cont
+    width: 5.625rem
+    height: 5.625rem
+    display: flex
+    align-items: center
+
+  &__title
+    margin: 0 0 1.125rem
+    color: $h-black
+    font-size: 1.5rem
+    font-weight: 600
+    text-transform: uppercase
+    letter-spacing: 0.125rem
+
+  &__title.gradient
+    background: linear-gradient(90deg, #FF2012 10%, #FFB800 90%)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+
+  &__p
+    margin: 0
+    color: $light-gray
+    font-size: 0.875rem
+
+  .icon
+    path
+      fill: $gray
+
+  .dot-pattern-1,
+  .dot-pattern-2,
+  .dot-pattern-3,
+  .dot-pattern-4
+    position: absolute
+
+  .dot-pattern-1,
+  .dot-pattern-3
+    top: 0.625rem
+    right: 1.25rem
+
+  .dot-pattern-2,
+  .dot-pattern-4
+    bottom: 0.625rem
+    left: 1.25rem

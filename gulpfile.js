@@ -16,9 +16,10 @@ const gulp         = require('gulp'),
       fs           = require('fs');
 
 
-const paths = {
+const PATHS = {
   src:  './src',
   dist: './dist',
+  blocks: './src/assets/blocks/',
   html: {
     src:  './src/*.html',
     dest: './dist'
@@ -61,7 +62,7 @@ gulp.task('clear', async() => {
   /* Удаление папки js */
   console.log('\n' + '* Удаление папки dist *');
 
-  const deletedPaths = await del([ paths.dist ])
+  const deletedPaths = await del([ PATHS.dist ])
 });
 
 
@@ -70,8 +71,8 @@ gulp.task('html', () => {
   console.log('\n' + '* Сборка html файлов *');
 
   return gulp
-    .src(paths.html.src)
-    .pipe(gulp.dest(paths.html.dest))
+    .src(PATHS.html.src)
+    .pipe(gulp.dest(PATHS.html.dest))
     .pipe(browserSync.stream())
 });
 
@@ -81,10 +82,13 @@ gulp.task('pug', () => {
   console.log('\n' + '* Компиляция pug файлов *');
 
   return gulp
-    .src([ paths.pug.src, '!src/template.pug' ])
+    .src([ PATHS.pug.src, '!src/template.pug' ])
     .pipe(plumber())
-    .pipe(pug({pretty: true}))
-    .pipe(gulp.dest(paths.pug.dest))
+    .pipe(pug({
+      pretty: true,
+      basedir: PATHS.blocks
+    }))
+    .pipe(gulp.dest(PATHS.pug.dest))
     .pipe(browserSync.stream())
 });
 
@@ -95,13 +99,15 @@ gulp.task('styles', () => {
 
   return (
     gulp
-      .src([ paths.styles.src, paths.styles.blocks ])
-      .pipe(sass())
+      .src([ PATHS.styles.src, PATHS.styles.blocks ])
+      .pipe(sass({
+        includePaths: [PATHS.blocks]
+      }))
       .on('error', sass.logError)
       .pipe(autoprefixer())
       .pipe(concat('style.min.css'))
       .pipe(cleanCSS())
-      .pipe(gulp.dest(paths.styles.dest))
+      .pipe(gulp.dest(PATHS.styles.dest))
       .pipe(browserSync.stream())
   )
 });
@@ -113,10 +119,10 @@ gulp.task('cssLibs', () => {
 
   return (
     gulp
-      .src(paths.libs.cssSrc)
+      .src(PATHS.libs.cssSrc)
       .pipe(concat('libs.min.css'))
       .pipe(cleanCSS())
-      .pipe(gulp.dest(paths.libs.cssDest))
+      .pipe(gulp.dest(PATHS.libs.cssDest))
       .pipe(browserSync.stream())
   )
 });
@@ -128,9 +134,9 @@ gulp.task('cssConcat', () => {
 
   return (
     gulp
-      .src(paths.src + '/assets/css/*.css')
+      .src(PATHS.src + '/assets/css/*.css')
       .pipe(concat('all.min.css'))
-      .pipe(gulp.dest(paths.dist + '/assets/css'))
+      .pipe(gulp.dest(PATHS.dist + '/assets/css'))
       .pipe(browserSync.stream())
   )
 });
@@ -142,15 +148,17 @@ gulp.task('scripts', () => {
 
   return (
     gulp
-      .src([ paths.libs.jsSrc, paths.scripts.src ])
+      .src([ PATHS.libs.jsSrc, PATHS.scripts.src ])
       .pipe(plumber())
-      .pipe(include())
+      .pipe(include({
+        includePaths: [PATHS.blocks]
+      }))
       .pipe(babel({
         presets: ['@babel/env']
       }))
       .pipe(concat('all.min.js'))
       .pipe(uglify())
-      .pipe(gulp.dest(paths.scripts.dest))
+      .pipe(gulp.dest(PATHS.scripts.dest))
   )
 });
 
@@ -160,14 +168,14 @@ gulp.task('images', () => {
   console.log('\n' + '* Минификация картинок *');
 
   return gulp
-    .src(paths.src + '/assets/blocks/**/**/**/*.+(png|jpg|jpeg|gif|svg|ico)')
+    .src(PATHS.src + '/assets/blocks/**/**/**/*.+(png|jpg|jpeg|gif|svg|ico)')
     .pipe(plumber())
     .pipe(imagemin())
     .pipe(rename((path) => {
       let slash = '/';
       path.dirname = path.dirname.replace(slash + 'img', '')
     }))
-    .pipe(gulp.dest(paths.dist + '/assets/img/'))
+    .pipe(gulp.dest(PATHS.dist + '/assets/img/'))
     .pipe(browserSync.stream())
 });
 
@@ -177,8 +185,8 @@ gulp.task('fonts', () => {
   console.log('\n' + '* Сборка шрифтов *');
 
   return gulp
-    .src(paths.fonts.src)
-    .pipe(gulp.dest(paths.fonts.dest))
+    .src(PATHS.fonts.src)
+    .pipe(gulp.dest(PATHS.fonts.dest))
 });
 
 
@@ -194,12 +202,12 @@ gulp.task('watch', () => {
     port: 3000
   });
 
-  gulp.watch(paths.html.src).on('change', browserSync.reload);
-  gulp.watch([ paths.pug.src, paths.src + '/**/**/**/**/*.pug' ], gulp.series('pug')).on('change', browserSync.reload);
-  gulp.watch([ paths.styles.src, paths.styles.blocks ], gulp.series('styles', 'cssLibs', 'cssConcat'));
-  gulp.watch(paths.styles.dest);
-  gulp.watch([ paths.scripts.src, paths.scripts.blocks ], gulp.series('scripts')).on('change', browserSync.reload);
-  gulp.watch(paths.images.src, gulp.series('images'))
+  gulp.watch(PATHS.html.src).on('change', browserSync.reload);
+  gulp.watch([ PATHS.pug.src, PATHS.src + '/**/**/**/**/*.pug' ], gulp.series('pug')).on('change', browserSync.reload);
+  gulp.watch([ PATHS.styles.src, PATHS.styles.blocks ], gulp.series('styles', 'cssLibs', 'cssConcat'));
+  gulp.watch(PATHS.styles.dest);
+  gulp.watch([ PATHS.scripts.src, PATHS.scripts.blocks ], gulp.series('scripts')).on('change', browserSync.reload);
+  gulp.watch(PATHS.images.src, gulp.series('images'))
 });
 
 

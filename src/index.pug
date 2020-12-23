@@ -2,15 +2,24 @@ extends template.pug
 
 block content
   //- Header block ('.header')
-  include assets/blocks/header/block.pug
+  include /header/block.pug
 
 
   - const page = 'index'
 
   main(class='content '+ page +'')
     //- Main block ('.main')
-    include assets/blocks/main/block.pug
+    include /main/block
+
+  //   //- Advantages block ('.advantages')
+  //   include /advantages/block
+
+  //   //- Catalog-nav block ('.catalog-nav')
+  //   include /catalog-nav/block
+
+  //   //- Popular block ('.popular')
+  //   include /popular/block
 
 
-  //- Popup block ('.footer')
-  include assets/blocks/footer/block.pug
+  // //- Popup block ('.footer')
+  // include /footer/block

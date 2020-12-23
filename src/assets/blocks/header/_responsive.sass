@@ -1,5 +1,73 @@
+@media (max-width: 1380px)
+  .header
+    &__cont
+      padding: .625rem 1.25rem
+
+    &__cont > * + *
+      margin: 0 0 0 1.5rem
+
+
+@media (max-width: 1199px)
+  .header-phone
+    width: 2.125rem
+    height: 2.125rem
+    flex: 2.125rem 0 0
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 100%
+    background: $main
+    order: 5
+
+    &__icon-cont
+      margin: 0
+
+    &__txt-cont
+      display: none
+
+    .icon
+      width: 1.25em
+      height: 1.25rem
+      top: 0.125rem
+
+      path
+        fill: #FFFFFF
+        stroke: #FFFFFF
+
+  .nav
+    order: 5
+
+  .header-info
+    max-width: 28rem
+
+
 @media (max-width: 991px)
-  .header-nav
+  .header
+    .logo
+      top: .125rem
+
+    .search
+      &__input
+        border: 0.125rem solid #DADADA
+
+    .burger-btn
+      margin: 0 0 0 2rem
+      order: 5
+
+  .header-phone
+    margin: 0 0 0 auto
+
+    .icon
+      width: 1.125em
+      height: 1.125rem
+
+  .nav
+    &__txt
+      display: none
+
+  .header-nav,
+  .header-info,
+  .auth
     display: none
 
   .burger-btn
@@ -7,3 +75,78 @@
 
   .burger-menu
     display: block
+
+  .header-bottom
+    height: auto
+    padding: 0.375rem 0
+
+
+@media (max-width: 767px)
+  .header
+    &__cont
+      padding: .625rem 1rem
+
+    &__cont > * + *
+      margin: 0 0 0 1rem
+
+    .burger-btn
+      margin: 0 0 0 1.2rem
+
+    .header-phone
+      width: 1.875rem
+      height: 1.875rem
+      flex: 1.875rem 0 0
+      margin: 0 0 0 auto
+
+      .icon
+        width: 1rem
+        height: 1rem
+        top: .063rem
+
+  .nav
+    &__link
+      display: none
+
+    &__link.cart
+      display: block
+
+  .nav > * + *
+    margin: 0
+
+
+@media (max-width: 479px)
+  .header
+    &__cont
+      padding: .5rem .75rem
+
+    &__cont > * + *
+      margin: 0
+
+    .logo
+      flex: 8.75rem 0 0
+      order: 2
+
+    .catalog-btn
+      margin: 0 .875rem 0 0
+      order: 1
+
+    .header-phone
+      margin: 0 .875rem 0 auto
+
+      .icon
+        top: .125rem
+
+
+@media (max-width: 380px)
+  .header
+    .logo
+      flex: 8.125rem 0 0
+
+    .burger-btn
+      margin: 0 0 0 1rem
+
+  .header-phone
+    display: none
+
+  .nav
+    margin: 0 0 0 auto

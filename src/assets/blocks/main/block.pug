@@ -1,3 +1,43 @@
 section.main
   .container
-    h1.main__title Project Base
+    .main__cont
+      .main-slider.swiper-container
+        .swiper-wrapper
+          .swiper-slide
+            a.main-slider__item(href='#')
+              img.main-slider__img(src='assets/img/main/banner-01.jpg' srcset='assets/img/main/banner-01@2x.jpg')
+          .swiper-slide
+            a.main-slider__item(href='#')
+              img.main-slider__img(src='assets/img/main/banner-01.jpg' srcset='assets/img/main/banner-01@2x.jpg')
+          .swiper-slide
+            a.main-slider__item(href='#')
+              img.main-slider__img(src='assets/img/main/banner-01.jpg' srcset='assets/img/main/banner-01@2x.jpg')
+
+      .gift
+        .gift__content
+          span.gift__title Подберите подарок себе <br>или своим близким <span class="emoji emoji-gift"></span>
+
+          .gift-form
+            .input-row
+              .input-wrapper.input-wrapper--fit
+                span.input-title Пол:
+                .input-row.input-row--no-gap
+                  label.btn-gender.active
+                    input(type='checkbox')
+                    include ./icons/male
+                  label.btn-gender
+                    input(type='checkbox')
+                    include ./icons/female
+              .input-wrapper
+                span.input-title Возраст:
+                input.input
+            .input-row
+              .input-wrapper
+                span.input-title Категория товара:
+                input.input
+            .input-row
+              .input-wrapper
+                span.input-title Максимальная цена:
+                input.input
+              .btn
+                span.btn__txt Найти

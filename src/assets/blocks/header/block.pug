@@ -1,17 +1,67 @@
 header.header
-  .header__cont
-    .burger-btn
-      span.burger-btn__elem
+  .header-wrapper
+    .header__cont
+      a.logo(href='#')
+        img.logo__img(src='assets/img/common/logo.svg')
 
-    .burger-menu.hidden
+      a.header-phone(href='#')
+        .header-phone__icon-cont
+          include ./icons/incoming-call
+        .header-phone__txt-cont
+          span.header-phone__num +7 (917) 539-11-42
+          span.header-phone__txt заказать звонок
 
-    nav.header-nav
-      ul.header-nav__list
-        li.header-nav__item
-          a.header-nav__link(href='#') Item 1
-        li.header-nav__item
-          a.header-nav__link(href='#') Item 2
-        li.header-nav__item
-          a.header-nav__link(href='#') Item 3
-        li.header-nav__item
-          a.header-nav__link(href='#') Item 4
+      button.catalog-btn
+        include ./icons/list
+        span.catalog-btn__txt каталог
+
+      .search
+        input.search__input.input(type='search' placeholder='Поиск')
+        button.search__btn
+          include ./icons/search
+
+      nav.nav
+        a.nav__link(href='#')
+          include ./icons/profile
+          span.nav__txt войти
+        a.nav__link(href='#')
+          include ./icons/favorite
+          span.nav__txt избранное
+        a.nav__link.cart(href='#')
+          include ./icons/cart
+          span.nav__txt корзина
+
+
+      .burger-btn
+        span.burger-btn__elem
+
+      .burger-menu.hidden
+
+  .header-bottom
+    .container
+      .header-bottom__cont
+        nav.header-nav
+          ul.header-nav__list
+            li.header-nav__item
+              a.header-nav__link(href='#') Доставка
+            li.header-nav__item
+              a.header-nav__link(href='#') Гарантия
+            li.header-nav__item
+              a.header-nav__link(href='#') О нас
+            li.header-nav__item
+              a.header-nav__link(href='#') Контакты
+
+        .header-info
+          .header-info__cont
+            .header-social
+              a.header-social__link
+              a.header-social__link
+              a.header-social__link
+            span.header-info__txt подпишитесь на&nbsp;нас, выигрывайте подарки
+
+        .auth
+          a.auth__link(href='#')
+            include ./icons/sign-in
+            span вход
+          a.auth__link(href='#')
+            span регистрация

@@ -1,1 +1,53 @@
 footer.footer
+  .container
+    .footer__cont
+      .footer__col-1
+        img.footer-logo(src='assets/img/common/logo-white.svg')
+        a.footer__link(href='tel:+79175391142')
+          include ../../../data/icons/phone
+          span.footer__txt +7 (917) 539-11-42
+        a.footer__link(href='mailto:fancy.shop@mail.ru')
+          include ../../../data/icons/mail
+          span.footer__txt fancy.shop@mail.ru
+
+      .footer__col-2
+        span.footer__title Каталог
+        ul.footer-menu.footer-menu--2-cols
+          li.footer-menu__item
+            a.footer-menu__link(href='#') Детские коляски
+          li.footer-menu__item
+            a.footer-menu__link(href='#') Квдрокоптеры и радиоуправляемые игрушки
+          li.footer-menu__item
+            a.footer-menu__link(href='#') Куклы
+          li.footer-menu__item
+            a.footer-menu__link(href='#') Развивающие игрушки
+          li.footer-menu__item
+            a.footer-menu__link(href='#') Детская одежда
+          li.footer-menu__item
+            a.footer-menu__link(href='#') Товары для мам и малышей
+          li.footer-menu__item
+            a.footer-menu__link(href='#') Мягкие игрушки
+          li.footer-menu__item
+            a.footer-menu__link(href='#') Велосипеды и гироскутеры
+          li.footer-menu__item
+            a.footer-menu__link(href='#') Конструкторы
+
+      .footer__col-3
+        span.footer__title Меню
+        ul.footer-menu
+          li.footer-menu__item
+            a.footer-menu__link(href='#') Доставка
+          li.footer-menu__item
+            a.footer-menu__link(href='#') Гарантия
+          li.footer-menu__item
+            a.footer-menu__link(href='#') О нас
+          li.footer-menu__item
+            a.footer-menu__link(href='#') Контакты
+
+      .footer__col-4
+        span.footer__title Обратная связь
+        form.footer-form
+          input.input(type='text' name='name' placeholder='Имя')
+          input.input(type='text' name='phone' placeholder='+7 (917) 539-11-42')
+          button.btn
+            span.btn__txt Отправить

@@ -10,8 +10,9 @@ body
   height: 100%
   min-height: 100vh
   margin: 0
-  font-weight: 400
-  font-family: 'Roboto', sans-serif
+  font-weight: 500
+  font-family: 'CeraRoundPro', 'Roboto', sans-serif
+  -webkit-font-smoothing: antialiased
   background: #FFFFFF
   overflow-x: hidden
   overflow-y: scroll
@@ -26,8 +27,8 @@ h3,
 h4,
 h5
   font-size: 2rem
-  font-weight: 600
-  font-family: 'Roboto', sans-serif
+  font-weight: 800
+  font-family: 'CeraRoundPro', 'Roboto', sans-serif
 
 a
   text-decoration: none
@@ -36,10 +37,13 @@ a
   &:hover
     color: $main
 
+path
+  transition: .2s
+
 
 .container
   width: 100%
-  max-width: 73.75rem
+  max-width: 76.25rem
   margin-left: auto
   margin-right: auto
   padding: 0 1.25rem
@@ -47,6 +51,9 @@ a
 
   @media (max-width: 767px)
     padding: 0 1rem
+
+  @media (max-width: 479px)
+    padding: 0 .75rem
 
 .wrapper
   min-height: 100%
@@ -61,6 +68,19 @@ a
 
 .top-index
   z-index: 99999
+
+
+.emoji
+  display: inline-block
+  position: relative
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center center
+
+.price
+  &:after
+    content: 'Р.'
+    margin: 0 0 0 0.25rem
 
 
 
@@ -103,7 +123,7 @@ a
     color: $main
     font-size: 1rem
     background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxMSAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuNTUzMTkgMS40OTk3NkwyLjg1MTA2IDguMjAxODhMOS41NTMxOSAxNC45MDQiIHN0cm9rZT0iIzNDRDY3OSIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjwvc3ZnPgo=')
-    background-size: 0.75rem
+    background-size: .75rem
     background-position: center center
     background-repeat: no-repeat
 
@@ -132,43 +152,213 @@ a
 
 /* Buttons */
 
-.btn
+.btn, .catalog-btn
   display: inline-block
-  min-width: 220px
-  padding: 0.875rem 1.25rem
+  padding: 0
+  position: relative
   color: #FFFFFF
-  font-size: 1rem
-  font-weight: 600
+  font-size: .875rem
+  font-weight: 800
   text-align: center
   text-decoration: none
-  background: $main
-  border-radius: 0.313rem
+  text-shadow: $btn-shadow
   border: none
+  background: transparent
+  box-sizing: border-box
+  -webkit-backface-visibility: hidden
+  transition: .2s
+  cursor: pointer
+  outline: none
+
+  &__txt
+    display: block
+    padding: .75rem 1.5rem
+    background: $main
+    border-radius: .313rem
+    position: relative
+    transition: .2s
+    z-index: 3
+
+  &:before
+    width: 100%
+    height: 100%
+    content: ''
+    display: block
+    left: 0
+    bottom: -4px
+    position: absolute
+    z-index: 1
+    background: darken($main, 10%)
+    border-radius: .313rem
+    transition: .2s
+
+  &:hover
+    color: #FFFFFF
+
+    .btn__txt
+      background: darken($main, 10%)
+
+    &:before
+      background: darken($main, 20%)
+
+  &:focus
+    box-shadow: 0px 0px 0px 4px lighten($main, 20%)
+
+.btn
+  &--empty
+    color: #FFFFFF
+    font-weight: 600
+    background: transparent
+    border: 2px solid #FFFFFF
+    border-radius: .313rem
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5))
+    -webkit-backface-visibility: hidden
+
+    .btn__txt
+      padding: .563rem 1.875rem
+      background: none
+      border-radius: 0
+      -webkit-backface-visibility: hidden
+      transition: .1s
+
+    &:before
+      display: none
+
+    &:hover
+      color: $h-black
+
+      .btn__txt
+        background: #FFFFFF
+        text-shadow: none
+
+.catalog-btn
+  padding: .688rem 1.2rem
+  display: flex
+  align-items: center
+  font-size: .875rem
+  background: $main
+  border-radius: .313rem
   box-sizing: border-box
   transition: .2s
   cursor: pointer
 
-  @media (max-width: 590px)
-    padding: 0.75rem 1rem
+  &:before
+    display: none
+
+  &__txt
+    display: inline
+    padding: 0
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.20)
+
+  .icon
+    width: 1.5rem
+    height: .938rem
+    margin: 0 .5rem 0 0
+
+    path
+      fill: #FFFFFF
+
+  &:focus
+    box-shadow: none
+
+  @media (max-width: 767px)
+    padding: .625rem .875rem
+
+  @media (max-width: 479px)
+    padding: .5rem .5rem
+
+    &__txt
+      display: none
+
+    .icon
+      margin: 0
 
 
 
-/* Inputs */
+/* Input bvv  */
+
+.input-row
+  display: flex
+  align-items: flex-end
+
+.input-row > * + *
+  margin: 0 0 0 1.25rem
+
+.input-row--no-gap > * + *
+  margin: 0 !important
+
+.input-wrapper
+  width: 100%
+
+  &--fit
+    width: auto
+
+.input-title
+  margin: 0 0 .375rem
+  display: block
+  font-size: 1rem
+  text-shadow: $heading-shadow
 
 .input
   width: 100%
-  padding: 1rem
-  border: 1px solid $gray
+  padding: .625rem 1rem
+  border: 2px solid #FFFFFF
   background: #FFFFFF
+  border-radius: 0.313rem
   box-sizing: border-box
   outline: none
   transition: .2s
 
   &:hover
-    border: 1px solid darken($gray, 20%)
+    opacity: .8
 
   &:focus
-    border: 1px solid $main
+    opacity: 1
+    border: 2px solid $main
+
+.btn-gender
+  width: 2.5rem
+  height: 2.5rem
+  margin: 0 .625rem 0 0
+  padding: 0
+  position: relative
+  border: none
+  border-radius: .313rem
+  background: #FFFFFF
+  display: flex
+  align-items: center
+  justify-content: center
+  cursor: pointer
+
+  &:last-of-type
+    margin: 0
+
+  &:hover
+    opacity: .9
+
+  input
+    top: 0
+    left: 0
+    position: absolute
+    opacity: 0
+
+  .icon
+    width: 1.75rem
+    height: 1.75rem
+
+    path
+      fill: $light-gray
+      transition: .2s
+
+.btn-gender.active
+  background: $main
+
+  .icon
+    path
+      fill: #FFFFFF
+
+  &:hover
+    opacity: 1
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button
@@ -182,4 +372,5 @@ input[type=number]
 
 
 ::placeholder
-  color: #AAAAAA
+  color: $gray
+  font-weight: 600
