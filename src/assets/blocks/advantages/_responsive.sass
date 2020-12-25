@@ -1,0 +1,44 @@
+@media (max-width: 1199px)
+  .advantages-list
+    &__icon-cont
+      width: 4.375rem
+      height: 4.375rem
+      margin: 0 0 .625rem
+
+    &__title
+      margin: 0 0 .875rem
+      font-size: 1.25rem
+
+
+@media (max-width: 991px)
+  .advantages-list
+    grid-template-columns: 1fr 1fr
+
+    &__item
+      border-bottom: 1px solid #F2F2F2
+      border-right: none
+
+      &:nth-of-type(1)
+        order: 3
+
+      &:nth-of-type(2)
+        order: 1
+
+      &:nth-of-type(4)
+        order: 2
+
+    &__icon-cont
+      width: 5.625rem
+      height: 5.625rem
+      margin: 0
+
+    &__title
+      font-size: 1.5rem
+
+    &__p
+      max-width: 17.5rem
+
+
+@media (max-width: 590px)
+  .advantages
+    display: none
